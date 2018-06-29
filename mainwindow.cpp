@@ -16,11 +16,18 @@ MainWindow::~MainWindow()
 
 void MainWindow::readCom()
 {
-    QByteArray temp = serial.read(1);
+    QByteArray temp = serial.readAll();
     if(!temp.isEmpty()){
-        ui->uartRecvText->insertPlainText("0x");
-        ui->uartRecvText->insertPlainText(temp.toHex());
-        ui->uartRecvText->insertPlainText(" ");
+        if(ui->hexStringButton->text() == "String"){
+            ui->uartRecvText->insertPlainText(temp);
+            ui->uartRecvText->insertPlainText("\n");
+        }else{
+//            temp = serial.readAll();
+            ui->uartRecvText->insertPlainText("0x");
+            ui->uartRecvText->insertPlainText(temp.toHex());
+            ui->uartRecvText->insertPlainText("\n");
+        }
+
     }
 }
 
@@ -82,3 +89,16 @@ void MainWindow::initPort()
     }
 }
 
+
+void MainWindow::on_recvClearBtn_clicked()
+{
+    ui->uartRecvText->clear();
+}
+
+void MainWindow::on_hexStringButton_clicked()
+{
+    if(ui->hexStringButton->text() == "String")
+        ui->hexStringButton->setText("Hex");
+    else
+        ui->hexStringButton->setText("String");
+}

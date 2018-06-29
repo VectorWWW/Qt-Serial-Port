@@ -2,8 +2,8 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include <QtSerialPort/QSerialPort>
-#include <QtSerialPort/QSerialPortInfo>
+#include <QSerialPort>
+#include <QSerialPortInfo>
 
 
 namespace Ui {
@@ -23,6 +23,10 @@ private slots:
     void on_uartOpenCloseBtn_clicked();
 
     void on_uartSendBtn_clicked();
+
+    void on_recvClearBtn_clicked();
+
+    void on_hexStringButton_clicked();
 
 private:
     Ui::MainWindow *ui;
