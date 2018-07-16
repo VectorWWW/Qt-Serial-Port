@@ -1,5 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include<string>
+using namespace std;
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -58,7 +60,10 @@ void MainWindow::on_uartOpenCloseBtn_clicked()
 
 void MainWindow::on_uartSendBtn_clicked()
 {
-    serial.write(ui->uartSendText->toPlainText().toLatin1());   // 以ASCII码的形式通过串口发送出去
+    int numOfInput = serial.write(ui->uartSendText->toPlainText().toLatin1());   // 以ASCII码的形式通过串口发送出去
+    string statusShow = "the number of input is" + to_string(numOfInput);
+
+    ui->statusBar->showMessage(QString::fromLocal8Bit(statusShow.c_str()), 2000);
 }
 
 void MainWindow::initPort()

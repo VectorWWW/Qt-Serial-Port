@@ -294,6 +294,15 @@
        <property name="enabled">
         <bool>true</bool>
        </property>
+       <property name="contextMenuPolicy">
+        <enum>Qt::DefaultContextMenu</enum>
+       </property>
+       <property name="autoFormatting">
+        <set>QTextEdit::AutoNone</set>
+       </property>
+       <property name="readOnly">
+        <bool>true</bool>
+       </property>
       </widget>
      </item>
      <item row="2" column="0">
